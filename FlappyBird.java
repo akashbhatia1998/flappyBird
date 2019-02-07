@@ -236,6 +236,7 @@ public class FlappyBird implements ActionListener, MouseListener, KeyListener
 		{
 			String s = String.valueOf(score);
 			String h = String.valueOf(highscore);
+			g.setColor(Color.red.darker().darker());
 			g.setFont(new Font("Arial", 1, 35));
 			g.drawString("Score = " +s +" || HighScore = "+h+ " || Game Over!", 40, HEIGHT / 2 - 50);
 		}
