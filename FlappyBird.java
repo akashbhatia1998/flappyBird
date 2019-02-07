@@ -35,18 +35,19 @@ public class FlappyBird implements ActionListener, MouseListener, KeyListener
 	public boolean gameOver, started;
 
 	public Random rand;
+	public int highscore = 0;
 
 	public FlappyBird()
 	{
 		JFrame jframe = new JFrame();
 		Timer timer = new Timer(20, this);
-
+        highscore = 0;
 		renderer = new Renderer();
 		rand = new Random();
 
 		jframe.add(renderer);
 		jframe.setTitle("Flappy Bird");
-		jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		jframe.setDefaultCloseOperation(jframe.EXIT_ON_CLOSE);
 		jframe.setSize(WIDTH, HEIGHT);
 		jframe.addMouseListener(this);
 		jframe.addKeyListener(this);
@@ -163,6 +164,7 @@ public class FlappyBird implements ActionListener, MouseListener, KeyListener
 				if (column.y == 0 && bird.x + bird.width / 2 > column.x + column.width / 2 - 10 && bird.x + bird.width / 2 < column.x + column.width / 2 + 10)
 				{
 					score++;
+					if(score> highscore) highscore  = score;
 				}
 
 				if (column.intersects(bird))
@@ -209,7 +211,7 @@ public class FlappyBird implements ActionListener, MouseListener, KeyListener
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 
 		g.setColor(Color.orange.darker());
-		g.fillRect(0, HEIGHT - 120, WIDTH, 120);
+		g.fillRect(0, HEIGHT - 120, WIDTH, 100);
 
 		g.setColor(Color.green);
 		g.fillRect(0, HEIGHT - 120, WIDTH, 20);
@@ -232,12 +234,16 @@ public class FlappyBird implements ActionListener, MouseListener, KeyListener
 
 		if (gameOver)
 		{
-			g.drawString("Game Over!", 100, HEIGHT / 2 - 50);
+			String s = String.valueOf(score);
+			String h = String.valueOf(highscore);
+			g.setFont(new Font("Arial", 1, 35));
+			g.drawString("Score = " +s +" || HighScore = "+h+ " || Game Over!", 40, HEIGHT / 2 - 50);
 		}
 
 		if (!gameOver && started)
 		{
-			g.drawString(String.valueOf(score), WIDTH / 2 - 25, 100);
+			//String s = String.va
+			g.drawString(String.valueOf(score), WIDTH / 2 - 50, 100);
 		}
 	}
 
