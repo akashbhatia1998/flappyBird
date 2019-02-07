@@ -22,7 +22,7 @@ public class FlappyBird implements ActionListener, MouseListener, KeyListener
 
 	public static FlappyBird flappyBird;
 
-	public final int WIDTH = 800, HEIGHT = 800;
+	public final int WIDTH = 800, HEIGHT = 700;
 
 	public Renderer renderer;
 
